@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package Toistoharjoittelu.Sovelluslogiikka;
+
+import Toistoharjoittelu.tiedostonkasittely.LueTiedosto;
+import java.util.ArrayList;
 
 
 
@@ -15,19 +13,18 @@ package Toistoharjoittelu.Sovelluslogiikka;
 public class Sanaparit {
     
     private LueTiedosto lue;
-    private String[] sanalista1;
-    private String[] sanalista2;
+    private ArrayList<String> sanalista1;
+    private ArrayList<String> sanalista2;
     private String[] taulukko;
     
     public Sanaparit(){
         
     }
-    public void lisaaLista(String nimi){
-        lue = new LueTiedosto(nimi);
-        
-        int taulukonKoko = lue.getKoko();
-        this.sanalista1 = new String[taulukonKoko];
-        this.sanalista2 = new String[taulukonKoko];
+    public void lueLista(String nimi){
+        lue = new LueTiedosto();
+        lue.lueTiedosto(nimi);
+        this.sanalista1 = new ArrayList<String>();
+        this.sanalista2 = new ArrayList<String>();
         
         this.sanalista1 = lue.getSanalista1();
         this.sanalista2 = lue.getSanalista2();
@@ -38,22 +35,19 @@ public class Sanaparit {
         return lue.getKoko();
     }
     public String getSana1(int kohta){      
-        return sanalista1[kohta];
+        return sanalista1.get(kohta);
     }
     
     public String getSana2(int kohta){      
-        return sanalista2[kohta];
+        return sanalista2.get(kohta);
     }
     
     public boolean onkoSanaaListalla(String sana){
         boolean check = false;
         for(int i= 0; i<lue.getKoko();i++){
-            if(sana.equals(this.getSana1(i))){
+            if(sana.equals(this.getSana2(i))){
                 check = true;
-            }
-            else if(sana.equals(this.getSana2(i))){
-                check = true;
-        }               
+            }                        
         }
         return check;
     }

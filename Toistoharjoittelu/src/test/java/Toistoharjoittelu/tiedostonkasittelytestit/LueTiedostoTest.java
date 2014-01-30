@@ -1,7 +1,7 @@
 
-package Toistoharjoittelu.Sovelluslogiikkatestit;
+package Toistoharjoittelu.tiedostonkasittelytestit;
 
-import Toistoharjoittelu.Sovelluslogiikka.LueTiedosto;
+import Toistoharjoittelu.tiedostonkasittely.LueTiedosto;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,7 +17,8 @@ public class LueTiedostoTest {
     
     @Before
     public void setUp() {
-        tiedosto = new LueTiedosto("maatJaKaupungit.txt");
+        tiedosto = new LueTiedosto();
+        tiedosto.lueTiedosto("maatJaKaupungit.txt");
     }
     
     @Test
@@ -32,15 +33,15 @@ public class LueTiedostoTest {
     }
     @Test
     public void tallentuukoKokoSanalista1() {
-        assertEquals("Kanada", tiedosto.getSanalista1()[0]);
-        assertEquals("Bulgaria", tiedosto.getSanalista1()[tiedosto.getKoko()]);
+        assertEquals("Kanada", tiedosto.getSanalista1().get(0));
+        assertEquals("Bulgaria", tiedosto.getSanalista1().get(tiedosto.getKoko() - 1));
         
     }
     
     @Test
     public void tallentuukoKokoSanalista2() {
-        assertEquals("Ottawa", tiedosto.getSanalista2()[0]);
-        assertEquals("Sofia", tiedosto.getSanalista2()[tiedosto.getKoko()]);
+        assertEquals("Ottawa", tiedosto.getSanalista2().get(0));
+        assertEquals("Sofia", tiedosto.getSanalista2().get(tiedosto.getKoko() - 1));
         
     }
 }
