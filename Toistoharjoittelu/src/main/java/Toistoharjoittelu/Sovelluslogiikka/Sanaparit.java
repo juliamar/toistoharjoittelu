@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 /**
- *
+ * Luokka hallinnoi sanapareja.
  * @author Julia Martikainen
  */
 public class Sanaparit {
@@ -17,9 +17,10 @@ public class Sanaparit {
     private ArrayList<String> sanalista2;
     private String[] taulukko;
     
-    public Sanaparit(){
-        
-    }
+    /**
+     * Lukee parametrina annetun listan ja tallentaa sarakkeet ArrayListeiksi.
+     * @param nimi tiedoston nimi.
+     */
     public void lueLista(String nimi){
         lue = new LueTiedosto();
         lue.lueTiedosto(nimi);
@@ -42,6 +43,11 @@ public class Sanaparit {
         return sanalista2.get(kohta);
     }
     
+    /**
+     * Tarkistaa löytyykö parametrina annettu sana listalta.
+     * @param sana tarkistettava sana.
+     * @return true jos sana löytyy.
+     */
     public boolean onkoSanaaListalla(String sana){
         boolean check = false;
         for(int i= 0; i<lue.getKoko();i++){

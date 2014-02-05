@@ -1,4 +1,2 @@
 maatJaKaupungit.txt
-maatJaKaupungit.txt
-maatJaKaupungit.txt
-maatJaKaupungit.txt
+SuomiEnglanti.txt

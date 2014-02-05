@@ -10,9 +10,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
- * Lukee tiedoston ja tallentaa sanaparit listaan.
+ * Luokka tiedoston lukemiseen.
+ * 
  * @author Julia Martikainen
  *
  */
@@ -29,82 +31,91 @@ public class LueTiedosto {
 
                         
 
-                        private int koko;
-                        private int nimetListanKoko;
 					
 		
-		 
-			public void lueTiedosto(String tiedostonNimi){
-				  File tiedosto = new File("src/main/java/Toistoharjoittelu/tiedostonkasittely/" + tiedostonNimi);
-			/**
-			 * Yrittää lukea tiedoston. Jos onnistuu, sanaparit talletetaan kahteen listaan.                             
+                        /**
+			 * Yrittää lukea tiedoston. Jos onnistuu, sanaparit talletetaan kahteen listaan.   
+                         * @param tiedostonNimi sanaparitiedoston nimi.
+                         * @return true, jos tiedoston lukeminen onnistuu, muuten false.
 			 */
-			try
-			{
-			        fis = new FileInputStream(tiedosto);
-			        bis = new BufferedInputStream(fis);
-			        br = new BufferedReader(new InputStreamReader(bis));
-			        int laskuri = 0;
-                                
-			        
-			        /**
-			         * Lukee tiedoston kerran ja laskee listojen pituuden.
-			         */
-			        while ((line = br.readLine()) != null)
-			        {
-			        	laskuri ++;
-			        }
-                                
-                                if(laskuri == 0){
-                                    System.out.println("Tiedoston tulee sisältää sanaparit  kahdessa sarakkeessa pilkuilla erotettuina.");
-                                    System.exit(1);
-                                }
-			        fis.getChannel().position(0);
-
-			        br = new BufferedReader(new InputStreamReader(bis));
-			 
-			   
-
-
-			        this.koko = laskuri;	
-                                this.sanalista1 = new ArrayList<String>();
-                                this.sanalista2 = new ArrayList<String>();
-
-			        			       			        
-			        int index = 0;
-		        	/**
-		        	 * Lukee tiedoston uudelleen ja tallentaa sanaparit kahteen listaan.
-		        	 */
-			        while ((line = br.readLine()) != null)
-			        {     
-			        	try{
-			        		String delims = "[, ]+";
-			        		String[] taulukko = line.split(delims);
-                                                this.sanalista1.add(index, taulukko[0]);
-                                                this.sanalista2.add(index, taulukko[1]);
-				        	index++;	
-			        	}		        	
-			        	catch(NumberFormatException e)
-			        	{
-			        	}
-			        }
-			        fis.close();
-			        bis.close();
-			        br.close();	
-                                
-			        
-			} 
-			catch (FileNotFoundException fnfe)
-			{
-			        System.out.println("Tiedostoa ei löytynyt. Luettavan tiedoston on oltava tiedostonkasittely-pakkauksen alla.");
-			}
-			catch (IOException ioe)
-			{
-			        ioe.printStackTrace();
-			}
-					 		
+			public boolean lueTiedosto(String tiedostonNimi){
+                              File tiedosto = new File("src/main/java/Toistoharjoittelu/tiedostonkasittely/" + tiedostonNimi);
+                              boolean totuusarvo = false;
 			
-		}	
+                            try
+                            {
+                                    fis = new FileInputStream(tiedosto);
+                                    bis = new BufferedInputStream(fis);
+                                    br = new BufferedReader(new InputStreamReader(bis));
+                                    int laskuri = 0;
+
+
+
+                                     // Lukee tiedoston kerran ja laskee listojen pituuden.
+
+                                    while ((line = br.readLine()) != null)
+                                    {
+                                            laskuri ++;
+                                    }
+
+                                    if(laskuri == 0){
+                                        //JOptionPane.showMessageDialog(null,"Tiedoston lukeminen epäonnistui!");
+                                        System.out.println("Tiedoston lukeminen epäonnistui!");
+                                        System.exit(1);
+                                    }
+                                    fis.getChannel().position(0);
+
+                                    br = new BufferedReader(new InputStreamReader(bis));
+
+
+
+	
+                                    this.sanalista1 = new ArrayList<String>();
+                                    this.sanalista2 = new ArrayList<String>();
+
+
+                                    int index = 0;
+
+                                 //Lukee tiedoston uudelleen ja tallentaa sanaparit kahteen listaan.
+
+                                    while ((line = br.readLine()) != null)
+                                    {     
+                                            try{
+                                                    String delims = "[, ]+";
+                                                    String[] taulukko = line.split(delims);
+                                                    this.sanalista1.add(index, taulukko[0]);
+                                                    this.sanalista2.add(index, taulukko[1]);
+                                                    index++;	
+                                                    totuusarvo = true;
+                                            }		        	
+                                            catch(NumberFormatException e)
+                                            {
+                                                //JOptionPane.showMessageDialog(null,"Tiedoston tulee sisältää sanaparit  kahdessa sarakkeessa pilkuilla erotettuina.");
+                                                System.out.println("Tiedoston tulee sisältää sanaparit  kahdessa sarakkeessa pilkuilla erotettuina.");
+                                            }	
+                                            catch(ArrayIndexOutOfBoundsException aerr)
+                                            {
+                                                aerr.printStackTrace();
+                                            }
+                                    }
+                                    fis.close();
+                                    bis.close();
+                                    br.close();	
+
+
+                            } 
+                            catch (FileNotFoundException fnfe)
+                            {
+                                    //JOptionPane.showMessageDialog(null,"Tiedostoa ei löytynyt. Luettavan tiedoston on oltava tiedostonkasittely-pakkauksen alla.");
+                                    System.out.println("Tiedostoa ei löytynyt. Luettavan tiedoston on oltava tiedostonkasittely-pakkauksen alla.");
+                            }
+                            catch (IOException ioe)
+                            {
+                                    ioe.printStackTrace();
+                            }
+
+                            return totuusarvo;
+                        }	
 			
 			
 		
@@ -126,13 +137,16 @@ public class LueTiedosto {
                             return this.sanalista1;
                         }
                         
-                        /* Lukee listat.txt tiedoston */
+                        /**
+                         * Lukee yksisarakkeisen tiedoston.
+                         * @param tiedostonNimi  tiedoston nimi.
+                         */
                         public void lueListaTiedosto(String tiedostonNimi){
                             File listaTiedosto = new File("src/main/java/Toistoharjoittelu/tiedostonkasittely/" + tiedostonNimi);
                             
-                            /**
-			 * Yrittää lukea tiedoston. Jos onnistuu, sanaparilistojen nimet talletetaan yhteen listaan.                             
-			 */
+                         
+			 // Yrittää lukea tiedoston. Jos onnistuu, sanaparilistojen nimet talletetaan yhteen listaan.                             
+			 
 			try
 			{
 			        fis = new FileInputStream(listaTiedosto);
@@ -152,7 +166,6 @@ public class LueTiedosto {
 
 			        br = new BufferedReader(new InputStreamReader(bis));
 			 
-			   	this.nimetListanKoko = laskuri;
                                 this.nimet = new ArrayList<String>();
 
 			        			       			        

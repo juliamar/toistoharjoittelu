@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package Toistoharjoittelu.Sovelluslogiikka;
 
 /**
- *
+ * Luokka tallentaa väärien ja oikeiden arvausten lukumäärät.
  * @author Julia Martikainen
  */
 public class Arvaukset {
@@ -15,16 +10,25 @@ public class Arvaukset {
     private int oikein;
     private int vaarin;
     
+    /**
+     * Konstruktori.
+     */
     public Arvaukset(){
         this.oikein = 0;
         this.vaarin = 0;
           
     }
     
+    /**
+     * Kasvattaa oikeita arvauksia yhdellä.
+     */
     public void lisaaOikein(){
         this.oikein = this.oikein + 1;
     }
     
+     /**
+     * Kasvattaa vääriä arvauksia yhdellä.
+     */
     public void lisaaVaarin(){
         this.vaarin = this.vaarin + 1;
     }
