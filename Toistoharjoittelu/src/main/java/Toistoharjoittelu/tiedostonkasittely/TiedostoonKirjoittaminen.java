@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package Toistoharjoittelu.tiedostonkasittely;
 
@@ -14,17 +10,25 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import Toistoharjoittelu.tiedostonkasittely.LueTiedosto;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
- *
+ * Luokka tiedoston kirjoittamiseen.
  * @author Julia Martikainen
  */
 public class TiedostoonKirjoittaminen {
         
-    public void kirjoitaTiedostoon(String sana1, String sana2){
+    
+    /**
+     * Tallentaa käyttäjän väärin arvaamat sanat ja niiden käännökset tiedostoon, sekä kellonajan ja päivämäärän.
+     * @param nimi  Tiedoston nimi
+     * @param sana1  Kysytty sana
+     * @param sana2  Käännös
+     */
+    public void kirjoitaTiedostoon(String nimi, String sana1, String sana2){
 
-            String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostonkasittely/tallennetutSanat.txt";
+            String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostonkasittely/" + nimi;
             FileWriter fw = null;
             File tiedosto = new File(tiedostonNimi);
         
@@ -52,7 +56,8 @@ public class TiedostoonKirjoittaminen {
                 } 
              catch(FileNotFoundException fnfe)
              {
-                    System.out.println("Tiedostoa ei löytynyt");
+                       System.out.println("Tiedostoa ei löytynyt!");
+                     //JOptionPane.showMessageDialog(null,"Tiedostoa ei löytynyt!");
                 } 
              catch (IOException ioe)
                 {
@@ -60,21 +65,29 @@ public class TiedostoonKirjoittaminen {
                 }
              
             }
+    
+    /**
+     * Tallentaa sanaparilistan nimet tiedostoon.
+     * @param listanNimi  tallennettavan listan nimi.
+     * @return true jos listan nimen tallentaminen onnistuu, muuten false.
+     */
     public boolean tallennaLista(String listanNimi){
-    //kirjoita listojen nimet erilliseen tiedostoon
+
             String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostonkasittely/listat.txt";
             FileWriter fw = null;
             
             File tiedosto = new File(tiedostonNimi);
             LueTiedosto lue = new LueTiedosto();
             lue.lueListaTiedosto("listat.txt");
+            
             boolean totuusarvo = true;
             ArrayList<String> nimet = lue.getNimet();
             
 
             if(nimet.contains(listanNimi)){
                     totuusarvo = false;
-                    System.out.println("Et voi lisätä samannimistä listaa!");
+                    JOptionPane.showMessageDialog(null,"Et voi lisätä samannimistä listaa!");
+                    //System.out.println("Et voi lisätä samannimistä listaa!");
             }                
 
             
@@ -91,30 +104,41 @@ public class TiedostoonKirjoittaminen {
                  try
                     {
                             BufferedWriter bw = new BufferedWriter(fw);
-                            String kirjaus = listanNimi + "\n";
+                            String kirjaus = "\n" +listanNimi;
+                            LueTiedosto tarkista = new LueTiedosto();
+                            if(tarkista.lueTiedosto(listanNimi)){
+                                if (tiedosto.exists()){
+                                    bw.write(kirjaus);
+                                } else {
+                                    bw.append(kirjaus);
+                                }
 
-                            if (tiedosto.exists()){
-                                bw.write(kirjaus);
-                            } else {
-                                bw.append(kirjaus);
+                                bw.close();
+                            }else {
+                                totuusarvo = false;
+                                JOptionPane.showMessageDialog(null,"Tiedoston tulee sisältää sanaparit  kahdessa sarakkeessa pilkulla eroteltuina.");
                             }
-                            //bw.append(kirjaus);
-                            bw.close();
                     } 
                  catch(FileNotFoundException fnfe)
                  {
-                        System.out.println("Tiedostoa ei löytynyt");
+                        totuusarvo = false;
+                        JOptionPane.showMessageDialog(null,"Tiedostoa ei löytynyt!");
+                        //System.out.println("Tiedostoa ei löytynyt!");
                     } 
                  catch (IOException ioe)
                     {
+                            totuusarvo = false;
                             ioe.printStackTrace();
                     }
             }
              return totuusarvo;
     }
-    
+    /**
+     * Tallentaa sanaparilistojen nimet tiedostoon yhden listan poiston yhteydessä.
+     * @param listat tallennettava ArrayList.
+     */
   public void tallennaUusiLista(ArrayList<String> listat){
-    //kirjoita listojen nimet erilliseen tiedostoon
+
             String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostonkasittely/listat.txt";
             FileWriter fw = null;
             File tiedosto = new File(tiedostonNimi);
@@ -143,7 +167,8 @@ public class TiedostoonKirjoittaminen {
                     } 
                  catch(FileNotFoundException fnfe)
                  {
-                        System.out.println("Tiedostoa ei löytynyt");
+                        //JOptionPane.showMessageDialog(null,"Tiedostoa ei löytynyt!");
+                        System.out.println("Tiedostoa ei löytynyt!");
                     } 
                  catch (IOException ioe)
                     {
@@ -152,6 +177,7 @@ public class TiedostoonKirjoittaminen {
             
              
     }
+  
 private static String getPaivamaara(){
 
     DateFormat paivays = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");

@@ -1,0 +1,3 @@
+Kissa, Cat
+Koira, Dog
+Hevonen, Horse
