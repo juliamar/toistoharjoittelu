@@ -1,4 +1,10 @@
-package Toistoharjoittelu.Sovelluslogiikka;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Toistoharjoittelu.Sovelluslogiikkatestit;
 
 import Toistoharjoittelu.Sovelluslogiikka.Arpoja;
 import Toistoharjoittelu.Sovelluslogiikka.Sanaparit;
@@ -9,35 +15,25 @@ import org.junit.Test;
 
 /**
  *
- * @author Julia Martikainen
+ * @author Finwolf
  */
 public class ArpojaTest {
-
     Arpoja arpoja;
     Sanaparit sanaparit;
     int montako;
-
+    
     @Before
     public void setUp() {
-        arpoja = new Arpoja();
+        arpoja = new Arpoja();   
         sanaparit = new Sanaparit();
         sanaparit.lueLista("maatJaKaupungit.txt");
         montako = 2;
     }
-
+    
     @Test
     public void arvoArpooOikeanMaaranSanoja() {
-        arpoja.arvo(montako, sanaparit);
-        int maara = arpoja.getArvotutSanat().size();
-        assertEquals(2, maara);
+       arpoja.arvo(montako, sanaparit);
+       int maara = arpoja.getArvotutSanat().size();
+       assertEquals(2, maara);
     }
-
-    @Test
-    public void arvoArpooOikeanMaaranKaannoksia() {
-        arpoja.arvo(montako, sanaparit);
-        int maara = arpoja.getArvottujenKaannokset().size();
-        assertEquals(2, maara);
-    }
-    
-
 }

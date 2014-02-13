@@ -46,9 +46,11 @@
             <configuration>
                 <targetClasses>
                     <param>Toistoharjoittelu.Sovelluslogiikka.*</param>
+                    <param>Toistoharjoittelu.tiedostonkasittely.*</param>
                 </targetClasses>
                 <targetTests>
                     <param>Toistoharjoittelu.Sovelluslogiikka.*</param>
+                    <param>Toistoharjoittelu.tiedostonkasittely.*</param>
                 </targetTests>
             </configuration>
         </plugin>

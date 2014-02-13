@@ -1,44 +1,51 @@
-
 package Toistoharjoittelu.Sovelluslogiikka;
 
 /**
  * Luokka tallentaa väärien ja oikeiden arvausten lukumäärät.
+ *
  * @author Julia Martikainen
  */
 public class Arvaukset {
-    
+
     private int oikein;
     private int vaarin;
-    
+    private int arvatut;
+
     /**
-     * Konstruktori.
+     * Konstruktori alustaa arvausten lukumäärät.
      */
-    public Arvaukset(){
+    public Arvaukset() {
         this.oikein = 0;
         this.vaarin = 0;
-          
+        this.arvatut = 0;
+
     }
-    
+
     /**
-     * Kasvattaa oikeita arvauksia yhdellä.
+     * Metodi kasvattaa oikeita arvauksia yhdellä.
      */
-    public void lisaaOikein(){
+    public void lisaaOikein() {
         this.oikein = this.oikein + 1;
+        this.arvatut++;
     }
-    
-     /**
-     * Kasvattaa vääriä arvauksia yhdellä.
+
+    /**
+     * Metodi kasvattaa vääriä arvauksia yhdellä.
      */
-    public void lisaaVaarin(){
+    public void lisaaVaarin() {
         this.vaarin = this.vaarin + 1;
+        this.arvatut++;
     }
-    
-    public int getOikein(){
-    
+
+    public int getArvaukset(){
+        return this.arvatut;
+    }
+    public int getOikein() {
+
         return this.oikein;
     }
-    
-    public int getVaarin(){
+
+    public int getVaarin() {
         return this.vaarin;
     }
 }
