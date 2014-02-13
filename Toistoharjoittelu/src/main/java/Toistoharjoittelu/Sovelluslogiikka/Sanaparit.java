@@ -5,10 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Luokka hallinnoi sanapareja.
-<<<<<<< HEAD
  *
-=======
->>>>>>> 426e20b666d7efe998da5ef8d98f1d550b6f09bf
  * @author Julia Martikainen
  */
 public class Sanaparit {
@@ -17,7 +14,6 @@ public class Sanaparit {
     private ArrayList<String> sanalista1;
     private ArrayList<String> sanalista2;
     private String[] taulukko;
-<<<<<<< HEAD
 
     /**
      * Metodi lukee parametrina annetun listan ja tallentaa sarakkeet ArrayListeiksi.
@@ -27,16 +23,6 @@ public class Sanaparit {
      */
     public boolean lueLista(String nimi) {
         boolean totuusarvo = false;
-=======
-    
-    /**
-     * Lukee parametrina annetun listan ja tallentaa sarakkeet ArrayListeiksi.
-     * @param nimi tiedoston nimi.
-     */
-    public void lueLista(String nimi){
-        lue = new LueTiedosto();
-        lue.lueTiedosto(nimi);
->>>>>>> 426e20b666d7efe998da5ef8d98f1d550b6f09bf
         this.sanalista1 = new ArrayList<String>();
         this.sanalista2 = new ArrayList<String>();
         lue = new LueTiedosto();
@@ -60,7 +46,6 @@ public class Sanaparit {
     public String getSana2(int kohta) {
         return sanalista2.get(kohta);
     }
-<<<<<<< HEAD
 
     /**
      * Metodi tarkistaa löytyykö parametrina annettu sana listalta.
@@ -74,20 +59,6 @@ public class Sanaparit {
             if (sana.equals(this.getSana2(i))) {
                 totuusarvo = true;
             }
-=======
-    
-    /**
-     * Tarkistaa löytyykö parametrina annettu sana listalta.
-     * @param sana tarkistettava sana.
-     * @return true jos sana löytyy.
-     */
-    public boolean onkoSanaaListalla(String sana){
-        boolean check = false;
-        for(int i= 0; i<lue.getKoko();i++){
-            if(sana.equals(this.getSana2(i))){
-                check = true;
-            }                        
->>>>>>> 426e20b666d7efe998da5ef8d98f1d550b6f09bf
         }
         return totuusarvo;
     }

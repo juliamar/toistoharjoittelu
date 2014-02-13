@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package Toistoharjoittelu.UserInterface;
 
 import Toistoharjoittelu.Sovelluslogiikka.Arvaukset;
@@ -123,26 +122,5 @@ public class Peli {
             JOptionPane.showMessageDialog(null, "Toistoharjoittelu keskeytetty!");
         }
         return teksti;
-=======
-
-
-package Toistoharjoittelu.UserInterface;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-/**
- * Luokka toteuttaa toistoharjoittelupelin.
- * 
- * @author Julia Martikainen
- */
-public class Peli implements ActionListener{
-    
-    
-    public void actionPerformed (ActionEvent e){
-	
-        
-                    
->>>>>>> 426e20b666d7efe998da5ef8d98f1d550b6f09bf
     }
 }
