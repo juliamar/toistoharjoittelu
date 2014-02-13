@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 Kani, Rabbit
 Hamsteri, Hamster
 Hanhi, Goose
 Hiiri, Mouse
 Rotta, Rat
-=======
-Kissa, Cat
-Koira, Dog
-Hevonen, Horse
->>>>>>> 426e20b666d7efe998da5ef8d98f1d550b6f09bf

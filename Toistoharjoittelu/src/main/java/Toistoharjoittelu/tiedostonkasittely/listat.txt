@@ -1,7 +1,1 @@
 maatJaKaupungit.txt
-<<<<<<< HEAD
-maatJaKaupungit.txtmaatJaKaupungit.txt
-maatJaKaupungit.txt
-=======
-SuomiEnglanti.txt
->>>>>>> 426e20b666d7efe998da5ef8d98f1d550b6f09bf
