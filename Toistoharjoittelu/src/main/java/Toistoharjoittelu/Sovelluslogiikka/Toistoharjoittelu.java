@@ -15,6 +15,7 @@ public class Toistoharjoittelu {
     private TiedostoonKirjoittaminen kirjoita;
     private LueTiedosto lue;
     private Arpoja arvo;
+<<<<<<< HEAD
 
     /**
      * Konstruktori.
@@ -48,9 +49,41 @@ public class Toistoharjoittelu {
 
     public ArrayList<String> getSanalistojenNimet() {
         //lukee tiedoston, jossa listojen nimet ja tallentaa ArrayListiin
+=======
+   
+    /**
+     * Konstruktori.
+     */
+     public Toistoharjoittelu() {
+       this.sanaparit = new Sanaparit();
+       this.kirjoita = new TiedostoonKirjoittaminen();
+       this.arvo = new Arpoja();
+       this.lue = new LueTiedosto();
+
+    }
+    
+     
+    public ArrayList<String> getArvotutSanat(int lukumaara){
+        this.arvo.arvo(lukumaara, sanaparit);
+        return this.arvo.getArvotutSanat();
+    }
+    
+    /**
+     * Tallentaa parametrina annetun tiedoston nimen tiedostoon.
+     * @param tiedostonNimi tallennettavan tiedoston nimi.
+     * @return true jos tallennus onnistuu.
+     */
+    public boolean tallennaSanaparilista(String tiedostonNimi){
+        return kirjoita.tallennaLista(tiedostonNimi);
+    }
+    
+    public ArrayList<String> getSanalistojenNimet(){
+    //lukee tiedoston, jossa listojen nimet ja tallentaa ArrayListiin
+>>>>>>> 426e20b666d7efe998da5ef8d98f1d550b6f09bf
         this.lue.lueListaTiedosto("listat.txt");
         return this.lue.getNimet();
     }
+<<<<<<< HEAD
 
     /**
      * Metodi lukee parametrina annetun tiedoston.
@@ -99,6 +132,46 @@ public class Toistoharjoittelu {
         this.kirjoita.kirjoitaTiedostoon(tiedostonNimi, sana1, sana2);
     }
 
+=======
+    
+    
+    /** 
+     * Lukee parametrina annetun  tiedoston.
+     * 
+     * @param tiedostonNimi Luettavan tiedoston nimi.
+     */
+    public void lueLista(String tiedostonNimi){
+        this.sanaparit.lueLista(tiedostonNimi);
+    }
+    
+    public String getSana1(int kohta){
+       return this.sanaparit.getSana1(kohta);
+                      
+    }    
+     public String getSana2(int kohta){
+       return this.sanaparit.getSana2(kohta);
+                      
+    } 
+    /**
+     * Tarkistaa löytyykö parametrina annettu sana Sanaparilistalta.
+     * @param sana tarkistettava sana.
+     * @return true jos sana löytyy listalta.
+     */
+    public boolean OnkoSanaListalla(String sana){
+        return this.sanaparit.onkoSanaaListalla(sana);
+    }
+    
+    /**
+     * Tallentaa väärin arvatut sanat tiedostoon.
+     * @param tiedostonNimi Tiedosto väärin arvatuille sanoille.
+     * @param sana1 tallennettava kysytty sana.
+     * @param sana2  tallennettava käännös.
+     */
+    public void tallennaVaaratSanat(String tiedostonNimi, String sana1, String sana2){
+        this.kirjoita.kirjoitaTiedostoon(tiedostonNimi, sana1, sana2);
+    }
+    
+>>>>>>> 426e20b666d7efe998da5ef8d98f1d550b6f09bf
 //    public void poistaLista(String nimi){
 //        ArrayList<String> nimet = lue.getNimet();
 //        boolean arvo = true;
@@ -119,4 +192,9 @@ public class Toistoharjoittelu {
 //        }
 //            
 //   }
+<<<<<<< HEAD
+=======
+   
+    
+>>>>>>> 426e20b666d7efe998da5ef8d98f1d550b6f09bf
 }
