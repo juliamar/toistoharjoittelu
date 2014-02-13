@@ -1,2 +1,0 @@
-maatJaKaupungit.txt
-SuomiEnglanti.txt
