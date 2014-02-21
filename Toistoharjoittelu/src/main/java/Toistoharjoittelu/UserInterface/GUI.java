@@ -129,7 +129,7 @@ public class GUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
 
             if (e.getSource() == nappi1) {
-                fc.setCurrentDirectory(new File("src/main/java/Toistoharjoittelu/tiedostonkasittely/"));
+                fc.setCurrentDirectory(new File("src/main/java/Toistoharjoittelu/tiedostot/"));
                 fc.setDialogTitle("Valitse Tiedosto");
                 FileNameExtensionFilter filtteri = new FileNameExtensionFilter("Sanaparit", "txt");
                 fc.setFileFilter(filtteri);
