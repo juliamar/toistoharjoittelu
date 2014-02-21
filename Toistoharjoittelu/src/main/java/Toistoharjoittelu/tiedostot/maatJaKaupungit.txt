@@ -1,0 +1,13 @@
+Kanada, Ottawa
+Suomi, Helsinki
+Ranska, Pariisi
+Turkki, Ankara
+Ruotsi, Tukholma
+Kiina, Peking
+Japani, Tokyo
+Viro, Tallinna
+Norja, Oslo
+Australia, Sydney
+Espanja, Madrid
+Portugali, Lissabon
+Bulgaria, Sofia
