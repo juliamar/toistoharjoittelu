@@ -99,24 +99,4 @@ public class Toistoharjoittelu {
         this.kirjoita.kirjoitaTiedostoon(tiedostonNimi, sana1, sana2);
     }
 
-//    public void poistaLista(String nimi){
-//        ArrayList<String> nimet = lue.getNimet();
-//        boolean arvo = true;
-//        int kohta = 0;
-//
-//        ArrayList<String> uusiLista = new ArrayList<String>();
-//        for(int i = 0; i < nimet.size(); i++){
-//            if(nimet.get(i).equals(nimi)){
-//                arvo = false;
-//                kohta = i;
-//            }
-//        }    
-//        nimet.remove(kohta);
-//        
-//        
-//        if(arvo){
-//            kirjoita.tallennaUusiLista(nimet);
-//        }
-//            
-//   }
 }

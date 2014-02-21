@@ -28,7 +28,7 @@ public class TiedostoonKirjoittaminen {
      */
     public void kirjoitaTiedostoon(String nimi, String sana1, String sana2) {
 
-        String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostonkasittely/" + nimi;
+        String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostot/" + nimi;
         FileWriter fw = null;
 
         File tiedosto = new File(tiedostonNimi);
@@ -69,7 +69,7 @@ public class TiedostoonKirjoittaminen {
      */
     public boolean tallennaLista(String listanNimi) {
 
-        String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostonkasittely/listat.txt";
+        String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostot/listat.txt";
         FileWriter fw = null;
         boolean totuusarvo = true;
         File tiedosto = new File(tiedostonNimi);
@@ -145,39 +145,8 @@ public class TiedostoonKirjoittaminen {
         return totuusarvo;
     }
 
-    /**
-     * Tallentaa sanaparilistojen nimet tiedostoon yhden listan poiston
-     * yhteydessä.
-     *
-     * @param listat tallennettava ArrayList.
-     */
-//    public void tallennaUusiLista(ArrayList<String> listat) {
-//
-//        String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostonkasittely/listat.txt";
-//        FileWriter fw = null;
-//        File tiedosto = new File(tiedostonNimi);
-//
-//        try {
-//            fw = new FileWriter(tiedosto, true);
-//        } catch (IOException ioe) {
-//            ioe.printStackTrace();
-//        }
-//
-//        try {
-//
-//            BufferedWriter bw = new BufferedWriter(fw);
-//            for (int i = 0; i < listat.size(); i++) {
-//                bw.append(listat.get(i) + "\n");
-//            }
-//            bw.close();
-//        } catch (FileNotFoundException fnfe) {
-//            //JOptionPane.showMessageDialog(null,"Tiedostoa ei löytynyt!");
-//            System.out.println("Tiedostoa ei löytynyt!");
-//        } catch (IOException ioe) {
-//            ioe.printStackTrace();
-//        }
-//
-//    }
+   
+
     /**
      * Metodi palauttaa tämän hetkisen kellonajan ja päivämäärän.
      *

@@ -35,7 +35,7 @@ public class LueTiedosto {
      * @return true, jos tiedoston lukeminen onnistuu, muuten false.
      */
     public boolean lueTiedosto(String tiedostonNimi) {
-        File tiedosto = new File("src/main/java/Toistoharjoittelu/tiedostonkasittely/" + tiedostonNimi);
+        File tiedosto = new File("src/main/java/Toistoharjoittelu/tiedostot/" + tiedostonNimi);
         boolean totuusarvo = false;
 
         try {
@@ -77,8 +77,8 @@ public class LueTiedosto {
             br.close();
 
         } catch (FileNotFoundException fnfe) {
-            JOptionPane.showMessageDialog(null, "Tiedostoa ei löytynyt. Luettavan tiedoston on oltava tiedostonkasittely-pakkauksen alla.");
-            //System.out.println("Tiedostoa ei löytynyt. Luettavan tiedoston on oltava tiedostonkasittely-pakkauksen alla.");
+            JOptionPane.showMessageDialog(null, "Tiedostoa ei löytynyt. Luettavan tiedoston on oltava tiedostot-pakkauksen alla.");
+            //System.out.println("Tiedostoa ei löytynyt. Luettavan tiedoston on oltava tiedostot-pakkauksen alla.");
         } catch (IOException ioe) {
 
         }
@@ -112,7 +112,7 @@ public class LueTiedosto {
      * @param tiedostonNimi tiedoston nimi.
      */
     public void lueListaTiedosto(String tiedostonNimi) {
-        File listaTiedosto = new File("src/main/java/Toistoharjoittelu/tiedostonkasittely/" + tiedostonNimi);
+        File listaTiedosto = new File("src/main/java/Toistoharjoittelu/tiedostot/" + tiedostonNimi);
 
         //Yrittää lukea tiedoston. Jos onnistuu, sanaparilistojen nimet talletetaan yhteen listaan.
         try {
@@ -145,7 +145,7 @@ public class LueTiedosto {
             br.close();
 
         } catch (FileNotFoundException fnfe) {
-            JOptionPane.showMessageDialog(null, "Lisää pelattava lista. Tiedoston on oltava tiedostonkasittely-pakkauksen alla.");
+            JOptionPane.showMessageDialog(null, "Lisää pelattava lista. Tiedoston on oltava tiedostot-pakkauksen alla.");
 
         } catch (IOException ioe) {
             //ioe.printStackTrace();
