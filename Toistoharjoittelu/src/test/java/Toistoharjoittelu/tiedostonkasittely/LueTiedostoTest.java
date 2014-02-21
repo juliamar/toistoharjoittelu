@@ -30,7 +30,7 @@ public class LueTiedostoTest {
 
     @Test
     public void tallentuukoTiedostonKokoOikein() {
-        assertEquals(16, tiedosto.getKoko());
+        assertEquals(13, tiedosto.getKoko());
 
     }
 
