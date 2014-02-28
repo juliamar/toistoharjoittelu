@@ -37,9 +37,10 @@ public class Arvaukset {
         this.arvatut++;
     }
 
-    public int getArvaukset(){
+    public int getArvaukset() {
         return this.arvatut;
     }
+
     public int getOikein() {
 
         return this.oikein;

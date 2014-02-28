@@ -19,7 +19,7 @@ public class ToistoharjoitteluTest {
     public void setUp() {
         tiedosto = new LueTiedosto();
         harjoittelu = new Toistoharjoittelu();
-        harjoittelu.lueLista("maatJaKaupungit.txt");
+        harjoittelu.lueLista("src/main/java/Toistoharjoittelu/tiedostot/maatJaKaupungit.txt");
     }
 
     @Test
@@ -30,18 +30,16 @@ public class ToistoharjoitteluTest {
     }
 
     @Test
+    public void getListanPituusPalauttaaOikeanArvon() {
+        assertEquals(13, this.harjoittelu.getListanPituus());
+    }
+
+    @Test
     public void getArvottenKaannoksetPalauttaaOikeanPituisenListan() {
         ArrayList<String> palautus = new ArrayList<String>();
         ArrayList<String> arpominen = harjoittelu.getArvotutSanat(5);
         palautus = harjoittelu.getKaannokset();
         assertEquals(5, palautus.size());
-    }
-
-    @Test
-    public void getSanalistojenNimetPalauttaaNimet() {
-        ArrayList<String> palautus = new ArrayList<String>();
-        palautus = harjoittelu.getSanalistojenNimet();
-        assertEquals("maatJaKaupungit.txt", palautus.get(0));
     }
 
     @Test
@@ -58,17 +56,37 @@ public class ToistoharjoitteluTest {
 
     @Test
     public void josSanaListallaPalauttaaTrue() {
-        assertTrue(harjoittelu.OnkoSanaListalla("Ottawa"));
+        assertTrue(harjoittelu.onkoSanaListalla("Ottawa"));
 
-    }
-
-    public void josSanaEiListallaPalauttaaFalse() {
-        assertFalse(harjoittelu.OnkoSanaListalla("Australia"));
     }
 
     @Test
-    public void samannimistaListaaEiVoiLisata() {
-        assertFalse(harjoittelu.tallennaSanaparilista("maatJaKaupungit.txt"));
+    public void josSanaEiListallaPalauttaaFalse() {
+        assertFalse(harjoittelu.onkoSanaListalla("Australia"));
+    }
+
+    @Test
+    public void josMaaraOikeanPalauttaaTrue() {
+        int monta = 1;
+        assertTrue(harjoittelu.onkoOikeaMaara(monta));
+    }
+
+    @Test
+    public void josMaaraNegatiivinenPalauttaaFalse() {
+        int monta = -1;
+        assertFalse(harjoittelu.onkoOikeaMaara(monta));
+    }
+
+    @Test
+    public void josMaaraYhtasuuriKuinListanPituusPalauttaaTrue() {
+        int monta = 13;
+        assertTrue(harjoittelu.onkoOikeaMaara(monta));
+    }
+
+    @Test
+    public void josMaaraSuurempiKuinListanPituusPalauttaaFalse() {
+        int monta = 20;
+        assertFalse(harjoittelu.onkoOikeaMaara(monta));
     }
 
     @Test

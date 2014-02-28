@@ -19,7 +19,7 @@ public class LueTiedostoTest {
     @Before
     public void setUp() {
         tiedosto = new LueTiedosto();
-        tiedosto.lueTiedosto("maatJaKaupungit.txt");
+        tiedosto.lueTiedosto("src/main/java/Toistoharjoittelu/tiedostot/maatJaKaupungit.txt");
     }
 
     @Test

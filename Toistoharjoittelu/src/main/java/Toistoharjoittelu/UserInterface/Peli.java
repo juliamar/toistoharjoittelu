@@ -2,6 +2,7 @@ package Toistoharjoittelu.UserInterface;
 
 import Toistoharjoittelu.Sovelluslogiikka.Arvaukset;
 import Toistoharjoittelu.Sovelluslogiikka.Toistoharjoittelu;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -25,31 +26,34 @@ public class Peli {
     }
 
     /**
-     * Metodi pyytää käyttäjää valitsemaan sanaparilistan ja kysyy listalta halutun
-     * määrän sanapareja.
+     * Metodi pyytää käyttäjää valitsemaan sanaparilistan ja kysyy listalta
+     * halutun määrän sanapareja.
      */
     public void pelaa() {
+
         String lista = this.valitseLista();
+
+        String viesti = "Anna positiivinen kokonaisluku, joka ei ylitä listan pituutta!";
 
         if (lista != null && harjoittelu.lueLista(lista)) {
 
-            String montako = this.lueKayttajalta("Kyseltävien sanaparien määrä?", "Montako sanaa?");
+            String montako = this.lueKayttajalta("Sanapareja listalla: " + harjoittelu.getListanPituus() + "\nKyseltävien sanaparien määrä?", "Montako sanaa?");
             if (montako != null) {
                 try {
                     int monta = Integer.parseInt(montako);
-                    if (Integer.parseInt(montako) > 0) {
+                    if (harjoittelu.onkoOikeaMaara(monta)) {
                         this.kysySanoja(lista, monta);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Anna positiivinen kokonaisluku!");
+                        JOptionPane.showMessageDialog(null, viesti);
                     }
                 } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null, "Anna positiivinen kokonaisluku!");
+                    JOptionPane.showMessageDialog(null, viesti);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Anna positiivinen kokonaisluku!");
+                JOptionPane.showMessageDialog(null, viesti);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Harjoittelu keskeytetty!");
+            JOptionPane.showMessageDialog(null, "Lisää vähintään yksi pelattava sanaparilista!");
         }
 
     }
@@ -60,14 +64,17 @@ public class Peli {
      * @return valittuLista Palauttaa valitun sanaparilistan.
      */
     public String valitseLista() {
-        ArrayList<String> listat = harjoittelu.getSanalistojenNimet();
-        Object[] komennot = new Object[listat.size()];
-        for (int j = 0; j < listat.size(); j++) {
-            komennot[j] = listat.get(j);
+
+        ArrayList<String> listat = harjoittelu.getSanalistojenTiedostopolut();
+        String valittuLista = null;
+        if (listat.size() > 0) {
+            Object[] komennot = new Object[listat.size()];
+            for (int j = 0; j < listat.size(); j++) {
+                komennot[j] = listat.get(j);
+            }
+
+            valittuLista = (String) JOptionPane.showInputDialog(null, "\n " + "Valitse pelattava lista\n  ", "Valitse lista", JOptionPane.PLAIN_MESSAGE, null, komennot, komennot[0]);
         }
-
-        String valittuLista = (String) JOptionPane.showInputDialog(null, "\n " + "Valitse pelattava lista\n  ", "Valitse lista", JOptionPane.PLAIN_MESSAGE, null, komennot, komennot[0]);
-
         return valittuLista;
     }
 
@@ -123,4 +130,5 @@ public class Peli {
         }
         return teksti;
     }
+
 }

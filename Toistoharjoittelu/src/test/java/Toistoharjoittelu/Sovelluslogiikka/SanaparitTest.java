@@ -20,7 +20,7 @@ public class SanaparitTest {
     @Before
     public void setUp() {
         sanaparit = new Sanaparit();
-        sanaparit.lueLista("maatJaKaupungit.txt");
+        sanaparit.lueLista("src/main/java/Toistoharjoittelu/tiedostot/maatJaKaupungit.txt");
     }
 
     @Test

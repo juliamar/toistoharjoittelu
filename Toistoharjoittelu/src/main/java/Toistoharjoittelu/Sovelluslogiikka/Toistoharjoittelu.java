@@ -2,6 +2,8 @@ package Toistoharjoittelu.Sovelluslogiikka;
 
 import Toistoharjoittelu.tiedostonkasittely.TiedostoonKirjoittaminen;
 import Toistoharjoittelu.tiedostonkasittely.LueTiedosto;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
@@ -42,14 +44,21 @@ public class Toistoharjoittelu {
      * @param tiedostonNimi tallennettavan tiedoston nimi.
      * @return true jos tallennus onnistuu.
      */
-    public boolean tallennaSanaparilista(String tiedostonNimi) {
-        return kirjoita.tallennaLista(tiedostonNimi);
+    public boolean tallennaSanaparilista(String tiedostopolku) {
+
+        return kirjoita.tallennaLista(tiedostopolku);
+
     }
 
-    public ArrayList<String> getSanalistojenNimet() {
+    public ArrayList<String> getSanalistojenTiedostopolut() {
         //lukee tiedoston, jossa listojen nimet ja tallentaa ArrayListiin
-        this.lue.lueListaTiedosto("listat.txt");
-        return this.lue.getNimet();
+        ArrayList<String> nimet = new ArrayList<String>();
+
+        if (this.lue.lueListaTiedosto("listat.txt")) {
+            nimet = this.lue.getNimet();
+        }
+
+        return nimet;
     }
 
     /**
@@ -76,14 +85,34 @@ public class Toistoharjoittelu {
 
     }
 
+    public int getListanPituus() {
+        return this.sanaparit.getKoko();
+    }
+
     /**
      * Metodi tarkistaa löytyykö parametrina annettu sana Sanaparilistalta.
      *
      * @param sana tarkistettava sana.
      * @return true jos sana löytyy listalta.
      */
-    public boolean OnkoSanaListalla(String sana) {
+    public boolean onkoSanaListalla(String sana) {
         return this.sanaparit.onkoSanaaListalla(sana);
+    }
+
+    /**
+     * Metodi tarkistaa onko käyttäjän syöttämä kysyttävien sanojen määrä
+     * positiivinen kokonaisluku, joka ei ole suurempi kuin listalla olevien
+     * sanaparien määrä.
+     *
+     * @param monta tarkistettava arvo.
+     * @return true jos arvo on hyväksyttävä, muuten false.
+     */
+    public boolean onkoOikeaMaara(int monta) {
+        boolean totuusarvo = false;
+        if (monta > 0 && monta <= this.getListanPituus()) {
+            totuusarvo = true;
+        }
+        return totuusarvo;
     }
 
     /**

@@ -28,7 +28,8 @@ public class TiedostoonKirjoittaminen {
      */
     public void kirjoitaTiedostoon(String nimi, String sana1, String sana2) {
 
-        String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostot/" + nimi;
+        String tiedostonNimi = nimi;
+
         FileWriter fw = null;
 
         File tiedosto = new File(tiedostonNimi);
@@ -69,7 +70,8 @@ public class TiedostoonKirjoittaminen {
      */
     public boolean tallennaLista(String listanNimi) {
 
-        String tiedostonNimi = "src/main/java/Toistoharjoittelu/tiedostot/listat.txt";
+        String tiedostonNimi = "listat.txt";
+
         FileWriter fw = null;
         boolean totuusarvo = true;
         File tiedosto = new File(tiedostonNimi);
@@ -83,7 +85,6 @@ public class TiedostoonKirjoittaminen {
 
             if (nimet.contains(listanNimi)) {
                 totuusarvo = false;
-                JOptionPane.showMessageDialog(null, "Et voi lisätä samannimistä listaa!");
 
             }
 
@@ -103,12 +104,11 @@ public class TiedostoonKirjoittaminen {
                         bw.close();
                     } else {
                         totuusarvo = false;
-                        JOptionPane.showMessageDialog(null, "Tiedoston tulee sisältää sanaparit  kahdessa sarakkeessa pilkulla eroteltuina.");
+
                     }
                 } catch (FileNotFoundException fnfe) {
                     totuusarvo = false;
-                    JOptionPane.showMessageDialog(null, "Tiedostoa ei löytynyt!");
-                    //System.out.println("Tiedostoa ei löytynyt!");
+
                 } catch (IOException ioe) {
                     totuusarvo = false;
 
@@ -116,6 +116,7 @@ public class TiedostoonKirjoittaminen {
             }
         } else {
             LueTiedosto tarkista = new LueTiedosto();
+
             if (tarkista.lueTiedosto(listanNimi)) {
                 try {
                     fw = new FileWriter(tiedosto, true);
@@ -130,7 +131,6 @@ public class TiedostoonKirjoittaminen {
 
                 } catch (FileNotFoundException fnfe) {
                     totuusarvo = false;
-                    JOptionPane.showMessageDialog(null, "Tiedostoa ei löytynyt!");
                 } catch (IOException ioe) {
                     totuusarvo = false;
 
@@ -138,14 +138,11 @@ public class TiedostoonKirjoittaminen {
 
             } else {
                 totuusarvo = false;
-                JOptionPane.showMessageDialog(null, "Tiedoston tulee sisältää sanaparit  kahdessa sarakkeessa pilkulla eroteltuina.");
             }
         }
 
         return totuusarvo;
     }
-
-   
 
     /**
      * Metodi palauttaa tämän hetkisen kellonajan ja päivämäärän.

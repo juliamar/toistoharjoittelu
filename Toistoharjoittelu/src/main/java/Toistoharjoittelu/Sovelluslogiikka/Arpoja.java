@@ -26,7 +26,8 @@ public class Arpoja {
     }
 
     /**
-     * Metodi arpoo parametrina annetun määrän sanoja parametrina annetusta listasta.
+     * Metodi arpoo parametrina annetun määrän sanoja parametrina annetusta
+     * listasta.
      *
      * @param montako arvottavien sanojen lukumäärä.
      * @param sanaparilista lista, josta sanat arvotaan.
@@ -34,22 +35,28 @@ public class Arpoja {
      */
     public void arvo(int montako, Sanaparit sanaparilista) {
         this.sanaparilista = sanaparilista;
-        int koko = this.sanaparilista.getKoko()-1;
+        int koko = this.sanaparilista.getKoko();
+        int i = 0;
+        ArrayList<Integer> arvot = new ArrayList<Integer>();
 
-        
-        for (int i = 0; i < montako; i++) {
+        while (i < montako) {
             int arvottuArvo = arpoja.nextInt(koko);
-            this.sanat.add( this.sanaparilista.getSana1(arvottuArvo));
-            this.kaannokset.add(this.sanaparilista.getSana2(arvottuArvo));
+            if (!(arvot.contains(arvottuArvo))) {
+                arvot.add(arvottuArvo);
+                this.sanat.add(this.sanaparilista.getSana1(arvottuArvo));
+                this.kaannokset.add(this.sanaparilista.getSana2(arvottuArvo));
+                i++;
+            }
 
         }
+
     }
 
     public ArrayList<String> getArvotutSanat() {
         return this.sanat;
     }
-    
-    public ArrayList<String> getArvottujenKaannokset(){
+
+    public ArrayList<String> getArvottujenKaannokset() {
         return this.kaannokset;
     }
 }

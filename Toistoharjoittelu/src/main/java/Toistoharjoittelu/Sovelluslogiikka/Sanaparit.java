@@ -16,17 +16,18 @@ public class Sanaparit {
     private String[] taulukko;
 
     /**
-     * Metodi lukee parametrina annetun listan ja tallentaa sarakkeet ArrayListeiksi.
+     * Metodi lukee parametrina annetun listan ja tallentaa sarakkeet
+     * ArrayListeiksi.
      *
      * @param nimi tiedoston nimi.
-     * @return 
+     * @return
      */
     public boolean lueLista(String nimi) {
         boolean totuusarvo = false;
         this.sanalista1 = new ArrayList<String>();
         this.sanalista2 = new ArrayList<String>();
         lue = new LueTiedosto();
-        
+
         if (lue.lueTiedosto(nimi)) {
             this.sanalista1 = lue.getSanalista1();
             this.sanalista2 = lue.getSanalista2();

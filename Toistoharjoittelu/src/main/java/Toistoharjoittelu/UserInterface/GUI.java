@@ -1,6 +1,7 @@
 package Toistoharjoittelu.UserInterface;
 
 import Toistoharjoittelu.Sovelluslogiikka.Toistoharjoittelu;
+import Toistoharjoittelu.tiedostonkasittely.TiedostoonKirjoittaminen;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -56,8 +57,8 @@ public class GUI extends JFrame {
     }
 
     /**
-     * Metodi luo valikon, jossa käyttäjä voi lisätä sanaparilistoja, siirtyä peliin tai
-     * poistua.
+     * Metodi luo valikon, jossa käyttäjä voi lisätä sanaparilistoja, siirtyä
+     * peliin tai poistua.
      */
     private void valikko() {
 
@@ -138,11 +139,11 @@ public class GUI extends JFrame {
 
                 if (i == JFileChooser.APPROVE_OPTION) {
                     filu = fc.getSelectedFile();
-                    if (toistoharjoittelu.tallennaSanaparilista(filu.getName())) {
+                    if (toistoharjoittelu.tallennaSanaparilista(filu.getPath())) {
                         JOptionPane.showMessageDialog(null, "Tiedoston lisääminen onnistui!");
                     } else {
 
-                        JOptionPane.showMessageDialog(null, "Tiedoston lisääminen epäonnistui!");
+                        JOptionPane.showMessageDialog(null, "Tiedoston lisääminen epäonnistui!\n- Et voi lisätä samassa hakemistossa olevaa samannimistä tiedostoa.\n- Tekstitiedoston tulee sisältää sanaparit  kahdessa sarakkeessa pilkulla eroteltuina.");
                     }
 
                 }
@@ -157,6 +158,8 @@ public class GUI extends JFrame {
      * Metodi sulkee ohjelman.
      */
     public static void lopeta() {
+        TiedostoonKirjoittaminen kirjoita = new TiedostoonKirjoittaminen();
+        //kirjoita.poistaLista("SuomiEnglanti.txt");
         int lopetus = JOptionPane.showOptionDialog(null, "Lopetetaanko ohjelma?", "Lopetus", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, GUI.valinta, GUI.valinta[0]);
         if (lopetus == 0) {
             System.exit(0);

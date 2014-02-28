@@ -3,3 +3,4 @@ Hamsteri, Hamster
 Hanhi, Goose
 Hiiri, Mouse
 Rotta, Rat
+Käärme, Snake

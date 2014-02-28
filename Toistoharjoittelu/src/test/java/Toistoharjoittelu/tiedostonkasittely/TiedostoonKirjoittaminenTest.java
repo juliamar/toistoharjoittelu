@@ -25,6 +25,5 @@ public class TiedostoonKirjoittaminenTest {
         lue.lueTiedosto("Testi1.txt");
         assertTrue(lue != null);
     }
-    
-}
 
+}

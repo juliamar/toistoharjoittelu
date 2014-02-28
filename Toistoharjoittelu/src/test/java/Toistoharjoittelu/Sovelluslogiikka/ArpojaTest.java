@@ -21,7 +21,7 @@ public class ArpojaTest {
     public void setUp() {
         arpoja = new Arpoja();
         sanaparit = new Sanaparit();
-        sanaparit.lueLista("maatJaKaupungit.txt");
+        sanaparit.lueLista("src/main/java/Toistoharjoittelu/tiedostot/maatJaKaupungit.txt");
         montako = 2;
     }
 
@@ -38,6 +38,5 @@ public class ArpojaTest {
         int maara = arpoja.getArvottujenKaannokset().size();
         assertEquals(2, maara);
     }
-    
 
 }

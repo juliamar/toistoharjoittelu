@@ -34,14 +34,16 @@ public class LueTiedosto {
      * @param tiedostonNimi sanaparitiedoston nimi.
      * @return true, jos tiedoston lukeminen onnistuu, muuten false.
      */
-    public boolean lueTiedosto(String tiedostonNimi) {
-        File tiedosto = new File("src/main/java/Toistoharjoittelu/tiedostot/" + tiedostonNimi);
+    public boolean lueTiedosto(String tiedostopolku) {
+        //File tiedosto = new File("src/main/java/Toistoharjoittelu/tiedostot/" + tiedostonNimi);
+        File tiedosto = new File(tiedostopolku);
+
         boolean totuusarvo = false;
 
         try {
             fis = new FileInputStream(tiedosto);
             bis = new BufferedInputStream(fis);
-            br = new BufferedReader(new InputStreamReader(bis));
+            br = new BufferedReader(new InputStreamReader(bis, "UTF8"));
             int laskuri = 0;
 
             // Lukee tiedoston kerran ja laskee listojen pituuden.
@@ -51,7 +53,7 @@ public class LueTiedosto {
 
             fis.getChannel().position(0);
 
-            br = new BufferedReader(new InputStreamReader(bis));
+            br = new BufferedReader(new InputStreamReader(bis, "UTF8"));
 
             this.sanalista1 = new ArrayList<String>();
             this.sanalista2 = new ArrayList<String>();
@@ -77,10 +79,10 @@ public class LueTiedosto {
             br.close();
 
         } catch (FileNotFoundException fnfe) {
-            JOptionPane.showMessageDialog(null, "Tiedostoa ei löytynyt. Luettavan tiedoston on oltava tiedostot-pakkauksen alla.");
-            //System.out.println("Tiedostoa ei löytynyt. Luettavan tiedoston on oltava tiedostot-pakkauksen alla.");
+            totuusarvo = false;
+            //JOptionPane.showMessageDialog(null, "Tiedostoa ei löytynyt. Luettavan tiedoston on oltava tiedostot-pakkauksen alla.");
         } catch (IOException ioe) {
-
+            totuusarvo = false;
         }
 
         return totuusarvo;
@@ -111,47 +113,51 @@ public class LueTiedosto {
      *
      * @param tiedostonNimi tiedoston nimi.
      */
-    public void lueListaTiedosto(String tiedostonNimi) {
-        File listaTiedosto = new File("src/main/java/Toistoharjoittelu/tiedostot/" + tiedostonNimi);
+    public boolean lueListaTiedosto(String tiedostonNimi) {
+        boolean totuusarvo = false;
+
+        File listaTiedosto = new File(tiedostonNimi);
 
         //Yrittää lukea tiedoston. Jos onnistuu, sanaparilistojen nimet talletetaan yhteen listaan.
         try {
             fis = new FileInputStream(listaTiedosto);
             bis = new BufferedInputStream(fis);
-            br = new BufferedReader(new InputStreamReader(bis));
+            br = new BufferedReader(new InputStreamReader(bis, "UTF8"));
             int laskuri = 0;
 
-             //Lukee tiedoston kerran ja laskee listan pituuden.
+            //Lukee tiedoston kerran ja laskee listan pituuden.
             while ((line = br.readLine()) != null) {
                 laskuri++;
             }
             fis.getChannel().position(0);
 
-            br = new BufferedReader(new InputStreamReader(bis));
+            br = new BufferedReader(new InputStreamReader(bis, "UTF8"));
 
             this.nimet = new ArrayList<String>();
 
             int i = 0;
 
-             //Lukee tiedoston uudelleen ja tallentaa listojen nimet yhteen listaan.
+            //Lukee tiedoston uudelleen ja tallentaa listojen nimet yhteen listaan.
             while ((line = br.readLine()) != null && !(line.isEmpty())) {
 
                 nimet.add(line);
                 i++;
 
             }
+            totuusarvo = true;
             fis.close();
             bis.close();
             br.close();
 
         } catch (FileNotFoundException fnfe) {
-            JOptionPane.showMessageDialog(null, "Lisää pelattava lista. Tiedoston on oltava tiedostot-pakkauksen alla.");
+            totuusarvo = false;
 
         } catch (IOException ioe) {
+            totuusarvo = false;
             //ioe.printStackTrace();
 
         }
-
+        return totuusarvo;
     }
 
 }
